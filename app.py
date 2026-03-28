@@ -244,3 +244,13 @@ def run():
 
 if __name__ == "__main__":
     run()
+def export_csv(nom_fichier="depenses.csv"):
+    """Exporter les dépenses dans un fichier CSV."""
+    import csv
+    rows = lister()
+    with open(nom_fichier, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["ID", "Date", "Catégorie", "Montant", "Description"])
+        for r in rows:
+            writer.writerow([r["id"], r["date"], r["categorie"], r["montant"], r["description"]])
+    print(f"  ✅ Exporté dans {nom_fichier}")
